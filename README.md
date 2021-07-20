@@ -1,5 +1,5 @@
 # markdown-image-migrator
-Upload the local images to Imgur that being attached in markdown and swap the link in markdown with the Imgur hosted image url.
+Upload the local images to Imgur that being attached in obsidian markdown and swap the link in markdown with the Imgur hosted image url.
 
 ## Roadmap
 
