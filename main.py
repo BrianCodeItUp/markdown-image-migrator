@@ -11,7 +11,7 @@ def main (vault_path, attachment_folder_name):
   # authentication
   imgur_client = authenticate()
   for md_path in markdown_list:  
-    with open(md_path) as md:
+    with open(md_path, 'r+') as md:
       content = md.readlines()
       image_path_list = process_markdown_image(content, attachment_path)
       
@@ -28,22 +28,18 @@ def main (vault_path, attachment_folder_name):
         link = new_image["link"]
         new_image_markdown = f'![imgur]({link})'
         content[line_index] = new_image_markdown
-        
-      # create new folder
-      new_note_folder = os.getcwd() + "/new notes"
-      if os.path.isdir(new_note_folder) == False:
-        os.mkdir(new_note_folder)
-        print('New notes folder created successfully')
 
-      # write new notes to new folder
-      filename = os.path.basename(md_path)
-      new_note_path = f'{new_note_folder}/{filename}'
-      with open(new_note_path, 'w') as notes_folder:
+      # write new content to the note
+      is_the_markdown_processed = len(image_path_list) > 0
+      if is_the_markdown_processed:
         new_content = "".join(content)
-        notes_folder.write(new_content)
-        print(f'New note {filename} created...')
+        md.write(new_content)
+        file_name = os.path.basename(md_path)
+        print(f"{file_name} image link is updated")
+        
       
-      print(f'Great! All images migrated to Imgur. \n Check out your new note at {new_note_folder}')
+    
+  print(f'Done! All images migrated to Imgur.')
 
 if __name__ == '__main__':
   vault_path = Path.home().joinpath('.development', 'code_test', 'markdown_img_migration_test')  
