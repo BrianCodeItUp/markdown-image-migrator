@@ -1,6 +1,10 @@
 # obsidian-image-migrator
 Upload the local images to Imgur that being attached in obsidian markdown and swap the link in markdown with the Imgur hosted image url.
 
+## Warning: This repo still under development, currently trying to fix the following bugs
+- can't find image with folder in Chinese name
+- can't find image markdown `![[attachments/{your_image}]]`
+
 ## Roadmap
 - [ ] Prompt User to pick vault location and input name of attachment folder
 
